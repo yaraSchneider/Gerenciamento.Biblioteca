@@ -2,17 +2,16 @@ package Gerenciamento.Transporte.Gerenciamento.Transporte.Controller;
 
 import Gerenciamento.Transporte.Gerenciamento.Transporte.Model.Entity.Rota;
 import Gerenciamento.Transporte.Gerenciamento.Transporte.Service.RotaService;
-import lombok.AllArgsConstructor;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import lombok.AllArgsConstructor;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/rota")
 @AllArgsConstructor
-
 public class RotaController {
 
     private RotaService rotaService;
@@ -38,7 +37,7 @@ public class RotaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Rota> procurarMotoristaPorId(PathVariable Integer id){
+    public ResponseEntity<Rota> procurarMotoristaPorId(@PathVariable Integer id ){
         try{
             Rota rota = rotaService.buscarRotaPorId(id);
             return new ResponseEntity<>(rota, HttpStatus.OK);
@@ -60,7 +59,7 @@ public class RotaController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Rota> deleteRota(@PathVariable Integer id){
         try {
-            rotaService.deletarRota(id);
+           // rotaService.deletarRota(id);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
