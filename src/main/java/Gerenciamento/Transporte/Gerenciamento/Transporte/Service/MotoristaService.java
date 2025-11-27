@@ -13,15 +13,13 @@ import java.util.Optional;
 public class MotoristaService {
 private MotoristaRepository motoristaRepository;
 
-public Motorista addMotorista(MotoristaPostRequestDTO
-                               motoristaPostRequestDTO){
+public Motorista addMotorista(MotoristaPostRequestDTO motoristaPostRequestDTO){
     if
     (motoristaRepository.existsByNome(motoristaPostRequestDTO.nome())){
         throw new RuntimeException();
 
-    }
-    return
-            motoristaRepository.save(motoristaPostRequestDTO.converterMotorista());
+    } return
+        motoristaRepository.save(motoristaPostRequestDTO.converterMotorista());
 
     }
     public List<Motorista> buscarMotoristas(){

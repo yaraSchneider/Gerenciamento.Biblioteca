@@ -37,7 +37,7 @@ public class RotaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Rota> procurarMotoristaPorId(@PathVariable Integer id ){
+    public ResponseEntity<Rota> procurarMotoristaPorId(@PathVariable Integer id){
         try{
             Rota rota = rotaService.buscarRotaPorId(id);
             return new ResponseEntity<>(rota, HttpStatus.OK);
