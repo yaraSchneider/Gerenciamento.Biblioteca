@@ -29,8 +29,8 @@ public class EnderecoController {
         }
 
     }
-         @GetMapping
-    public ResponseEntity<List <Endereco>>
+      //   @GetMapping
+    //public ResponseEntity<List <Endereco>>
 
 
 
