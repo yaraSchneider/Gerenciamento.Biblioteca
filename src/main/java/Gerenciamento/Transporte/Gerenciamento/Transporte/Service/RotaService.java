@@ -25,15 +25,19 @@ public class RotaService {
         }
         throw new RuntimeException();
     }
-        public Rota atualizarRota( Integer id,Rota rota){
+        
+    public Rota atualizarRota( Integer id,Rota rota){
         rota.setId(id);
         return rotaRepository.save(rota);
-        }
+        
+    }
 
-        public void atualizarRota(Integer id){
+    public void atualizarRota(Integer id){
         rotaRepository.deleteById(id);
-        }
+    }
 
-
+    public void deletarRota(Integer id){
+        rotaRepository.deleteById(id);
+    }
 
 }
