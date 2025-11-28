@@ -1,13 +1,15 @@
 package Gerenciamento.Transporte.Gerenciamento.Transporte.Service;
 
 import Gerenciamento.Transporte.Gerenciamento.Transporte.Model.DTO.VeiculoPostRequestDTO;
-import Gerenciamento.Transporte.Gerenciamento.Transporte.Model.Entity.Rota;
 import Gerenciamento.Transporte.Gerenciamento.Transporte.Model.Entity.Veiculo;
 import Gerenciamento.Transporte.Gerenciamento.Transporte.Model.Repository.VeiculoRepository;
-
+import lombok.RequiredArgsConstructor;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.stereotype.Service;
 
+@Service
+@RequiredArgsConstructor
 public class VeiculoService {
 
     private VeiculoRepository veiculoRepository;
@@ -15,8 +17,7 @@ public class VeiculoService {
     public Veiculo addVeiculo(VeiculoPostRequestDTO veiculoPostRequestDTO) {
         if (veiculoRepository.existeByPlaca(veiculoPostRequestDTO.placa())){
             throw new RuntimeException();
-        }
-        return veiculoRepository.save(veiculoPostRequestDTO.converterVeiculo());
+        } return veiculoRepository.save(veiculoPostRequestDTO.converterVeiculo());
     }
 
     public List<Veiculo> buscarVeiculo(){
@@ -28,7 +29,7 @@ public class VeiculoService {
             if (veiculo.isPresent()){
                 return veiculo.get();
             }
-            throw new RuntimeException();
+        throw new RuntimeException();
     }
 
     public Veiculo atualizarVeiculo (Integer id, Veiculo veiculo){

@@ -2,12 +2,14 @@ package Gerenciamento.Transporte.Gerenciamento.Transporte.Service;
 
 import Gerenciamento.Transporte.Gerenciamento.Transporte.Model.Entity.Rota;
 import Gerenciamento.Transporte.Gerenciamento.Transporte.Model.Repository.RotaRepository;
-import org.springframework.stereotype.Service;
+import lombok.RequiredArgsConstructor;
 
+import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class RotaService {
 
     private RotaRepository rotaRepository;
@@ -15,21 +17,21 @@ public class RotaService {
     public Rota addRota(Rota rota) {
         return rotaRepository.save(rota);
     }
+
     public List<Rota> buscarRota(){
         return rotaRepository.findAll();
     }
+
     public Rota buscarRotaPorId(Integer id){
         Optional<Rota> rotaOptional = rotaRepository.findById(id);
         if(rotaOptional.isPresent()){
             return rotaOptional.get();
-        }
-        throw new RuntimeException();
+        } throw new RuntimeException();
     }
         
     public Rota atualizarRota( Integer id,Rota rota){
         rota.setId(id);
-        return rotaRepository.save(rota);
-        
+        return rotaRepository.save(rota); 
     }
 
     public void atualizarRota(Integer id){

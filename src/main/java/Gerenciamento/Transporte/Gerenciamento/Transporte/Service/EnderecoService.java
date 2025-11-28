@@ -1,16 +1,15 @@
 package Gerenciamento.Transporte.Gerenciamento.Transporte.Service;
 
-
 import Gerenciamento.Transporte.Gerenciamento.Transporte.Model.DTO.EnderecoPostRequestDTO;
 import Gerenciamento.Transporte.Gerenciamento.Transporte.Model.Entity.Endereco;
 import Gerenciamento.Transporte.Gerenciamento.Transporte.Model.Repository.EnderecoRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
+@RequiredArgsConstructor
 public class EnderecoService {
 
     private EnderecoRepository enderecoRepository;
@@ -25,6 +24,7 @@ public class EnderecoService {
     public List<Endereco> procurarEndereco(){
         return enderecoRepository.findAll();
     }
+    
     public Endereco procurarEnderecoPorId(Integer id){
         Optional<Endereco> enderecoOptional = enderecoRepository.findById(id);
         if (enderecoOptional.isPresent()){
