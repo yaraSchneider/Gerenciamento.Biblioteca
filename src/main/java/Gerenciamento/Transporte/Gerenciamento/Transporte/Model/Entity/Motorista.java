@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,25 +18,28 @@ public class Motorista {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column (nullable = false)
+
+    @Column(nullable = false)
     private String nome;
+
     @Column(nullable = false)
     private String email;
+
     @Column(nullable = false)
     private String telefone;
 
     @JsonIgnore
     @ToString.Exclude
-    @OneToOne
+    @OneToOne(optional = true)  // <--- opcional
     private Endereco endereco;
 
     @JsonIgnore
     @ToString.Exclude
-    @OneToMany
-    private List<Veiculo> veiculos;
+    @OneToMany(mappedBy = "motorista") // <--- coloquei mappedBy
+    private List<Veiculo> veiculos = new ArrayList<>();
 
     @JsonIgnore
     @ToString.Exclude
-    @OneToMany (mappedBy = "motorista")
-    private List<Rota> rotas;
+    @OneToMany(mappedBy = "motorista")
+    private List<Rota> rotas = new ArrayList<>();
 }

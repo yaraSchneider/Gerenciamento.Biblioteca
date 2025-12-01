@@ -18,6 +18,7 @@ public class RotaService {
     public List<Rota> buscarRota(){
         return rotaRepository.findAll();
     }
+
     public Rota buscarRotaPorId(Integer id){
         Optional<Rota> rotaOptional = rotaRepository.findById(id);
         if(rotaOptional.isPresent()){
@@ -30,10 +31,6 @@ public class RotaService {
         rota.setId(id);
         return rotaRepository.save(rota);
         
-    }
-
-    public void atualizarRota(Integer id){
-        rotaRepository.deleteById(id);
     }
 
     public void deletarRota(Integer id){

@@ -2,47 +2,40 @@ package Gerenciamento.Transporte.Gerenciamento.Transporte.Service;
 
 import Gerenciamento.Transporte.Gerenciamento.Transporte.Model.DTO.MotoristaPostRequestDTO;
 import Gerenciamento.Transporte.Gerenciamento.Transporte.Model.Entity.Motorista;
-import Gerenciamento.Transporte.Gerenciamento.Transporte.Model.Repository.EnderecoRepository;
 import Gerenciamento.Transporte.Gerenciamento.Transporte.Model.Repository.MotoristaRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class MotoristaService {
-private MotoristaRepository motoristaRepository;
 
-public Motorista addMotorista(MotoristaPostRequestDTO motoristaPostRequestDTO){
-    if
-    (motoristaRepository.existsByNome(motoristaPostRequestDTO.nome())){
-        throw new RuntimeException();
+    private final MotoristaRepository motoristaRepository;
 
-    } return
-        motoristaRepository.save(motoristaPostRequestDTO.converterMotorista());
-
+    public Motorista addMotorista(MotoristaPostRequestDTO motoristaPostRequestDTO){
+        if (motoristaRepository.existsByNome(motoristaPostRequestDTO.nome())){
+            throw new RuntimeException("Motorista já existe");
+        }
+        return motoristaRepository.save(motoristaPostRequestDTO.converterMotorista());
     }
+
     public List<Motorista> buscarMotoristas(){
         return motoristaRepository.findAll();
     }
 
     public Motorista buscarMotoristaPorId(Integer id){
-    Optional<Motorista> motoristaOptional = motoristaRepository.findById(id);
-    if (motoristaOptional.isPresent()){
-        return motoristaOptional.get();
-
+        return motoristaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Motorista não encontrado"));
     }
-    throw new RuntimeException();
 
-    }
     public Motorista atualizarMotorista(Integer id,Motorista motorista){
-    motorista.setId(id);
-    return motoristaRepository.save(motorista);
-
+        motorista.setId(id);
+        return motoristaRepository.save(motorista);
     }
 
     public void deletarMotorista(Integer id){
-    motoristaRepository.deleteById(id);
+        motoristaRepository.deleteById(id);
     }
-
 }

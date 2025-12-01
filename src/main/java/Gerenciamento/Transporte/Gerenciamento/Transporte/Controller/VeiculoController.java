@@ -1,4 +1,4 @@
-package Gerenciamento.Transporte.Gerenciamento.Transporte.Controller;
-
-public class VeiculoController {
-}
+//package Gerenciamento.Transporte.Gerenciamento.Transporte.Controller;
+//
+//public class VeiculoController {
+//}

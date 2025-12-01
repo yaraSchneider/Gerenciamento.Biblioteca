@@ -10,7 +10,7 @@ import lombok.AllArgsConstructor;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/rota")
+@RequestMapping("/rota")
 @AllArgsConstructor
 public class RotaController {
 
@@ -59,7 +59,7 @@ public class RotaController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Rota> deleteRota(@PathVariable Integer id){
         try {
-           // rotaService.deletarRota(id);
+           rotaService.deletarRota(id);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
